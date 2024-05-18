@@ -1,39 +1,37 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../App';
 
-function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Register({ setUser }) {
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    email: '',
+    password: '',
+  });
+
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
 
-  const handleRegister = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === 'hero123@gmail.com' && password === '12345') {
-      const newUser = { email, password };
-      dispatch({ type: 'REGISTER', payload: newUser });
-      navigate('/');
-    } else {
-      alert('Registration failed. Use the correct email and password.');
-    }
+    setUser(form);
+    navigate('/login');
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input name="firstName" placeholder="Ad" value={form.firstName} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
+      <input name="lastName" placeholder="Soyad" value={form.lastName} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
+      <input name="address" placeholder="Adres" value={form.address} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
+      <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
+      <input name="password" type="password" placeholder="Parol" value={form.password} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
+      <button type="submit" style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>Register</button>
+    </form>
   );
 }
 

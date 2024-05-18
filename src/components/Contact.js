@@ -1,134 +1,57 @@
 import React, { useState } from 'react';
+import './App.css';
 
-function ContactForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        surname: '',
-        number: '',
-        message: ''
-    });
+function Contact({ user }) {
+    const [form, setForm] = useState({ message: '' });
+    const [messages, setMessages] = useState([]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
+        setForm((prevForm) => ({ ...prevForm, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        setMessages((prevMessages) => [...prevMessages, { ...user, message: form.message }]);
+        setForm({ message: '' });
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input
-                    style={{
-                        width: '50%',
-                        height: '50px',
-                        fontSize: '15px',
-                    }}
-                    type='text'
-                    name='name'
-                    placeholder='Ad'
-                    value={formData.name}
-                    onChange={handleChange}
-                /><br></br><br></br>
-                <input
-                    style={{
-                        width: '50%',
-                        height: '50px',
-                        fontSize: '15px'
-                    }}
-                    type='text'
-                    name='surname'
-                    placeholder='Soyad'
-                    value={formData.surname}
-                    onChange={handleChange}
-                /><br></br><br></br>
-                <input
-                    style={{
-                        width: '50%',
-                        height: '50px',
-                        fontSize: '15px'
-                    }}
-                    type='number'
-                    name='number'
-                    placeholder='Nömrə'
-                    value={formData.number}
-                    onChange={handleChange}
-                /><br></br><br></br>
-                <input
-                    style={{
-                        width: '50%',
-                        height: '50px',
-                        fontSize: '15px'
-                    }}
-                    type='email'
-                    name='email'
-                    placeholder='E-poçt'
-                    value={formData.email}
-                    onChange={handleChange}
-                /><br></br><br></br>
-                <textarea
-                    style={{
-                        width: '50%',
-                        height: '50px',
-                        fontSize: '15px'
-                    }}
-                    name='message'
-                    placeholder='Mesaj'
-                    value={formData.message}
-                    onChange={handleChange}
-                ></textarea><br></br><br></br>
-                <button type='submit' style={{
-                    backgroundColor: 'lightblue',
-                    borderRadius: '15px',
-                    fontSize: '20px',
-                    width: '50%',
-                    height: '40px'
+                <input name="firstName" placeholder="Add" value={user.firstName} readOnly style={{ margin: '10px 10px ', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                <input name="lastName" placeholder="Soyad" value={user.lastName} readOnly style={{ margin: '10px 10px ', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                <input name="address" placeholder="Adres" value={user.address} readOnly style={{ margin: '10px 10 px', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                <input name="email" placeholder="Email" value={user.email} readOnly style={{ margin: '10px 10px', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                <textarea name="message" placeholder="Mesaj" value={form.message} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                <button type="submit" style={{
+                    border: '1px solid #ccc', borderRadius: '4px', width:'10%'
                 }}>Göndər</button>
             </form>
-            <br></br>
-            <table style={{
-                backgroundColor: 'yellow',
-                borderRadius: "10px",
-                width: "50%",
-                border: '1px solid #000',
-                padding: "10px"
-            }}>
-
-                <thead style={{
-                    fontSize: '20px',
-                    color: 'blue'
-                }}>
+            <table>
+                <thead>
                     <tr>
                         <th>Ad</th>
                         <th>Soyad</th>
-                        <th>Nömrə</th>
-                        <th>E-poçt</th>
+                        <th>Adres</th>
+                        <th>Email</th>
                         <th>Mesaj</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style={{
-                        fontSize: '20px',
-                        fontFamily: "cursive",
-                        color: 'red'
-                    }}>
-                        <td>{formData.name}</td>
-                        <td>{formData.surname}</td>
-                        <td>{formData.number}</td>
-                        <td>{formData.email}</td>
-                        <td>{formData.message}</td>
-                    </tr>
+                    {messages.map((msg, index) => (
+                        <tr key={index}>
+                            <td>{msg.firstName}</td>
+                            <td>{msg.lastName}</td>
+                            <td>{msg.address}</td>
+                            <td>{msg.email}</td>
+                            <td>{msg.message}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
     );
 }
 
-export default ContactForm;
+export default Contact;

@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+table {
+  width: 100%;
+  border-collapse:separate; /* Hücreler arasında boşluk olmaması için */
+  margin: 70px auto;
+  border: 3px solid #9b9898; /* Tablo kenarlığı */
+}
+
+th, td {
+  border: 1px solid #585555; /* Hücre kenarlıkları */
+  padding: 20px;
+  text-align: center;
+}
+
+thead {
+  background-color: rgb(203, 218, 228);
+}
