@@ -30,7 +30,7 @@ function Register({ setUser }) {
       <input name="address" placeholder="Adres" value={form.address} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
       <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
       <input name="password" type="password" placeholder="Parol" value={form.password} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
-      <button type="submit" style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>Register</button>
+      <button type="submit" style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>Sign Up</button>
     </form>
   );
 }

@@ -15,15 +15,30 @@ function Login({ user }) {
     if (form.email === user.email && form.password === user.password) {
       navigate('/home');
     } else {
-      alert('Email veya Parol yanlışdır');
+      alert('E-mail və ya Parol yanlışdır');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }} /> <br></br>
-      <input name="password" type="password" placeholder="Parol" value={form.password} onChange={handleChange} required style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}/> <br></br>
-      <button type="submit" style={{ margin: '10px 0', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>Login</button>
+      <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{
+        margin: '10px 0',
+        padding: '10px',
+        border: '1px solid #ccc',
+        borderRadius: '4px'
+      }} /> <br></br>
+      <input name="password" type="password" placeholder="Parol" value={form.password} onChange={handleChange} required style={{
+        margin: '10px 0',
+        padding: '10px',
+        border: '1px solid #ccc',
+        borderRadius: '4px'
+      }} /> <br></br>
+      <button type="submit" style={{
+        margin: '10px 0',
+        padding: '10px',
+        border: '1px solid #ccc',
+        borderRadius: '4px'
+      }}>Sign In</button>
     </form>
   );
 }

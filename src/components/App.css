@@ -40,17 +40,22 @@
 
 table {
   width: 100%;
-  border-collapse:separate; /* Hücreler arasında boşluk olmaması için */
+  border-collapse:separate; 
   margin: 70px auto;
-  border: 3px solid #9b9898; /* Tablo kenarlığı */
+  border: 3px solid #9b9898; 
 }
 
 th, td {
-  border: 1px solid #585555; /* Hücre kenarlıkları */
+  border: 1px solid #585555; 
   padding: 20px;
   text-align: center;
 }
 
 thead {
   background-color: rgb(203, 218, 228);
+}
+
+.btn:hover{
+  background-color: #a9d6e2;
+  transition: 0.3s;
 }
